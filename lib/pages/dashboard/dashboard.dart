@@ -17,27 +17,29 @@ class _DashboardState extends State<Dashboard> {
 
   Future<void> _analyzeText(String text) async {
     final url = Uri.parse(
-        "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyCBB_EvhOp1cVvagQNaHy9cnpcb2fYe2gg");
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'comment': {'text': text},
-        'languages': ['en'],
-        'requestedAttributes': {'TOXICITY': {}},
-      }),
-    );
+        "https://function-1-167291386687.us-central1.run.app"); // 替换为你的 Cloud Function URL
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'text': text}),
+      );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final score =
-          data['attributeScores']['TOXICITY']['summaryScore']['value'];
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final score =
+            data['attributeScores']['TOXICITY']['summaryScore']['value'];
+        setState(() {
+          _result = "Toxicity Score: ${(score * 100).toStringAsFixed(2)}%";
+        });
+      } else {
+        setState(() {
+          _result = "Error analyzing text: ${response.body}";
+        });
+      }
+    } catch (e) {
       setState(() {
-        _result = "Toxicity Score: ${(score * 100).toStringAsFixed(2)}%";
-      });
-    } else {
-      setState(() {
-        _result = "Error analyzing text.";
+        _result = "Error: $e";
       });
     }
   }
