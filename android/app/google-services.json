@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159639375418",
+    "project_id": "flutter-sentiment-analys-fe044",
+    "storage_bucket": "flutter-sentiment-analys-fe044.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159639375418:android:727d26ce43ec5d54f72f03",
+        "android_client_info": {
+          "package_name": "com.example.sentiment_analysis"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPuqy3FOzy6ly1KVSQ35Wn_7_HdQO_788"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
